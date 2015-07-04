@@ -55,6 +55,10 @@ public class Pokemon {
 	public void setPlayer(boolean player) {
 		this.player = player;
 	}
+	
+	public boolean getPlayer(){
+		return player;
+	}
 
 	public int getNo() {
 		return no;
