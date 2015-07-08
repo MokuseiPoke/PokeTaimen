@@ -9,8 +9,8 @@ public class testmain {
 		EffectRelation kouka;
 		EffectRelation.Effect bairitu;
 		//pika.setType(Pokemon.Type.ELECTRIC);
-		pika.setType(Pokemon.Type.FAIRY,Pokemon.Type.PSYCHIC);
-		jira.setType(Pokemon.Type.FLYING,Pokemon.Type.DRAGON);
+		pika.setType(Pokemon.Type.GRASS,Pokemon.Type.NONE);
+		jira.setType(Pokemon.Type.FIRE,Pokemon.Type.NONE);
 		
 		TypeChecker tc = new TypeChecker();
 		kouka = tc.typecheck(pika, jira);

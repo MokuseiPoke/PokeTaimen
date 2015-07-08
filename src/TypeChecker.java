@@ -278,7 +278,8 @@ public class TypeChecker {
 					}// いまひとつ
 					break;
 				case NONE:
-					break;// タイプナシなら何もせずに終わる
+					kouka[i]=0;
+					break;// 自ポケのタイプがなかったら倍率を0にする
 				}
 
 			}
