@@ -1,3 +1,5 @@
+import java.awt.EventQueue;
+
 
 public class testmain {
 
@@ -27,6 +29,21 @@ public class testmain {
 		case MINIMUM:System.out.println("minimum");break;
 		case NOT:System.out.println("not");break;
 		}
+		
+		
+		//GUI関連のrun
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = new GUI();
+					frame.setVisible(true);
+					frame.setResizable(false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		
 		
 	}
