@@ -9,7 +9,7 @@ public class TypeChecker {
 		
 		float kouka[] = { 1, 1 };// 倍率
 		float highkouka;
-		int i, j; // j_jibun i_teki
+		int i, j; // j_teki i_jibun
 		Pokemon.Type[] mytype;
 		Pokemon.Type[] enetype;
 		mytype = new Pokemon.Type[2];
