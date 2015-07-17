@@ -104,7 +104,8 @@ public class GUI extends JFrame implements ActionListener {
 		String a;
 		for(int i=0;i<6;i++){
 			a = text[i].getText();
-			label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
+			//label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
+			label[i].setIcon(new ImageIcon(getClass().getResource("icon/"+a+".png")));
 			//System.out.println(i+"…"+point[i]);
 			Pokemon p = new Pokemon(i, true);	//ポケモンを作成
 			p.setName(text[i].getText());
@@ -115,7 +116,7 @@ public class GUI extends JFrame implements ActionListener {
 		}
 		for(int i=6;i<12;i++){
 			a=text[i].getText();
-			label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
+			label[i].setIcon(new ImageIcon(getClass().getResource("icon/"+a+".png")));
 		//	System.out.println(i+"…"+point[i]);
 			Pokemon p = new Pokemon(i-6, false);	//ポケモンを作成
 			p.setName(text[i].getText());
