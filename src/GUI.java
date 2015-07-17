@@ -23,7 +23,7 @@ public class GUI extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField[] text=new JTextField[12];
 	private JLabel[] label = new JLabel[12];
-	private Point[] point = new Point[12];
+	public Point[] point = new Point[12];
 	private JPanel mypanel = new JPanel();
 	private JPanel enepanel = new JPanel();
 	private JPanel drawpanel = new JPanel();
@@ -54,7 +54,7 @@ public class GUI extends JFrame implements ActionListener {
 			label[i] = new JLabel("");
 			label[i].setBounds(12,25+46*i,36,23);
 			mypanel.add(label[i]);
-			point[i] = new Point(49,20+47*i);
+//			point[i] = new Point(49,20+47*i);
 
 		}
 		//敵側のパネルの生成
@@ -72,7 +72,7 @@ public class GUI extends JFrame implements ActionListener {
 			label[i] = new JLabel("");
 			label[i].setBounds(12,25+46*(i-6),36,23);
 			enepanel.add(label[i]);
-			point[i] = new Point(49,20+47*(i-6));
+//			point[i] = new Point(49,20+47*(i-6));
 		}
 		
 		//描画パネル
@@ -84,8 +84,10 @@ public class GUI extends JFrame implements ActionListener {
 		line.setBounds(0, 0, 280, 300);
 		drawpanel.add(line);
 		
+		
+		
 		//ボタン
-		JButton button = new JButton("Hit!");
+		JButton button = new JButton("Search!");
 		button.setBorder(new LineBorder(new Color(0, 0, 0)));
 		button.setBounds(245, 385, 200, 50);
 		contentPane.add(button);
@@ -94,16 +96,33 @@ public class GUI extends JFrame implements ActionListener {
 		
 	}
 	
-
+	
 	//ボタンが押された時の処理
 	public void actionPerformed(ActionEvent e) {
-		for(int i=0;i<12;i++){
-//			int a=i+1;
-			//label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\00"+a+".png"));
-			System.out.println(text[i].getText());
-//			System.out.println(i+"…"+point[i].x);			
-
+		PokemonTable ptable = new PokemonTable();
+		PokemonModel pmodel = new PokemonModel();
+		String a;
+		for(int i=0;i<6;i++){
+			a = text[i].getText();
+			label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
+			//System.out.println(i+"…"+point[i]);
+			Pokemon p = new Pokemon(i, true);	//ポケモンを作成
+			p.setName(text[i].getText());
+//			pmodel.searchName(p);
+//			p.getType();
+			ptable.add(p);
+			
+		}
+		for(int i=6;i<12;i++){
+			a=text[i].getText();
+			label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
+		//	System.out.println(i+"…"+point[i]);
+			Pokemon p = new Pokemon(i-6, false);	//ポケモンを作成
+			p.setName(text[i].getText());
+			ptable.add(p);
 		}
 
+		
+		
 	}
 }
