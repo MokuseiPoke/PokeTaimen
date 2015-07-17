@@ -9,8 +9,15 @@ public class PokemonModel {
 	public PokemonModel(){
 		readCSV("poke.csv");
 	}
+	
+	public void addInfomationPokemon(PokemonTable pt){
+		pt.indexReset();
+		while(pt.hasNext()){
+			searchName(pt.next());
+		}
+	}
 
-    private void readCSV(String fileName) {  
+    private void readCSV(String fileName) {
         try {
             File csv = new File(fileName); // CSVデータファイル
 
@@ -99,6 +106,8 @@ public class PokemonModel {
 		}else{
 			type2=Pokemon.Type.NONE;
 		}
+		
+		pokemon.setNo(aPoke.get("no"));
 		
 		pokemon.setType(type1,type2);
     	
