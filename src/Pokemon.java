@@ -22,7 +22,7 @@ public class Pokemon {
 	}
 
 	private String name; // このポケモンの名前
-	private int no; // このポケモンの図鑑No
+	private String no; // このポケモンの図鑑No
 	private Type type1; // このポケモンのタイプ１
 	private Type type2; // このポケモンのタイプ２
 	private int id; // このポケモンのGUI上の識別番号
@@ -60,11 +60,11 @@ public class Pokemon {
 		return player;
 	}
 
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
 
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 	
@@ -81,6 +81,14 @@ public class Pokemon {
 	public Type[] getType(){
 		Type type[] = {type1,type2};
 		return type;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
