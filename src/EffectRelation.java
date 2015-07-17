@@ -1,6 +1,6 @@
 public class EffectRelation {
 
-	enum Effect {
+	public enum Effect {
 		HYPER,//*4.0
 		SUPER,//*2.0
 		NORMAL,//*1.0
