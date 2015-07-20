@@ -15,6 +15,8 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
+import java.net.URL;
+
 import javax.swing.border.LineBorder;
 
 
@@ -30,7 +32,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	public GUI() {
 		setTitle("PBM(PokemonBestMatch)");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\オブジェクト指向\\XYicon\\モンスターボールicon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage((getClass().getResource("icon/モンスターボール.png"))));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
@@ -52,9 +54,8 @@ public class GUI extends JFrame implements ActionListener {
 			mypanel.add(text[i]);
 			text[i].setColumns(7);
 			label[i] = new JLabel("");
-			label[i].setBounds(12,25+46*i,36,23);
+			label[i].setBounds(12,25+46*i,36,27);
 			mypanel.add(label[i]);
-//			point[i] = new Point(49,20+47*i);
 
 		}
 		//敵側のパネルの生成
@@ -70,9 +71,8 @@ public class GUI extends JFrame implements ActionListener {
 			enepanel.add(text[i]);
 			text[i].setColumns(7);
 			label[i] = new JLabel("");
-			label[i].setBounds(12,25+46*(i-6),36,23);
+			label[i].setBounds(12,25+46*(i-6),36,27);
 			enepanel.add(label[i]);
-//			point[i] = new Point(49,20+47*(i-6));
 		}
 		
 		//描画パネル
@@ -101,29 +101,48 @@ public class GUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		PokemonTable ptable = new PokemonTable();
 		PokemonModel pmodel = new PokemonModel();
+		EffectTable eftable = new EffectTable();
 		String a;
 		for(int i=0;i<6;i++){
 			a = text[i].getText();
-			//label[i].setIcon(new ImageIcon("F:\\オブジェクト指向\\XYicon\\"+a+".png"));
-			label[i].setIcon(new ImageIcon(getClass().getResource("icon/"+a+".png")));
-			//System.out.println(i+"…"+point[i]);
-			Pokemon p = new Pokemon(i, true);	//ポケモンを作成
-			p.setName(text[i].getText());
-//			pmodel.searchName(p);
-//			p.getType();
-			ptable.add(p);
-			
+			if(a.equals(""))	continue;
+			ptable.add(new Pokemon(i, true,a));
 		}
+		
 		for(int i=6;i<12;i++){
-			a=text[i].getText();
-			label[i].setIcon(new ImageIcon(getClass().getResource("icon/"+a+".png")));
-		//	System.out.println(i+"…"+point[i]);
-			Pokemon p = new Pokemon(i-6, false);	//ポケモンを作成
-			p.setName(text[i].getText());
-			ptable.add(p);
+			a = text[i].getText();
+			if(a.equals(""))	continue;
+			ptable.add(new Pokemon(i, false,a));
+		}
+
+		pmodel.addInfomationPokemon(ptable);
+		ptable.indexReset();
+//		while(eftable.hasNext()){
+//			EffectRelation foo = eftable.next();
+//			System.out.println();
+//		}
+		
+
+		
+		//図鑑Noを取得
+		String  no = new String();
+		Pokemon.Type[] type = new Pokemon.Type[2];
+		for(int i=0;i<12;i++){
+			if(!ptable.hasNext())	break;
+			a = text[i].getText();
+			if(a=="")	continue;
+			no  =ptable.next().getNo();
+			type =ptable.next().getType();
+			if(type==null)	continue;
+			label[i].setIcon(new ImageIcon(getClass().getResource("icon/"+no+".png")));
+			System.out.println(type[0] +","+ type[1]);
 		}
 
 		
-		
+		//テスト
+		EffectTable testtable = new EffectTable();
+		testtable.add(new EffectRelation(new Pokemon(0,true,"ミュウ"),new Pokemon(1,true,"ゲンガー"),EffectRelation.Effect.HYPER));
+		EffectRelation test =testtable.next();
+		System.out.println(test.getAttackPokemon().getName());
 	}
 }
