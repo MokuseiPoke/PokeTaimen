@@ -107,9 +107,11 @@ public class PokemonModel {
 			type2=Pokemon.Type.NONE;
 		}
 		
+
+		pokemon.setType(type1,type2);
+		
 		pokemon.setNo(aPoke.get("no"));
 		
-		pokemon.setType(type1,type2);
     	
         return null;
     }
