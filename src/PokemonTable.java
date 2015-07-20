@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.glassfish.external.statistics.annotations.Reset;
+
 public class PokemonTable {
 	private List<Pokemon> pokemons = new ArrayList<Pokemon>();
 	private int index, myIndex = 0, eneIndex = 0;
@@ -13,6 +15,8 @@ public class PokemonTable {
 
 	private int ePokeSize = 0;
 	private int mPokeSize = 0;
+	private int matchIndex = 0;
+	private int matchSize = 0;
 
 	public PokemonTable() {
 		size = 0;
@@ -40,8 +44,21 @@ public class PokemonTable {
 		return pokemons.get(index++);
 	}
 
-	public List<Pokemon[]> makeMatchingList() {
+	public Pokemon[] matchingListNext() {
 
+		return kumiawase.get(matchIndex++);
+	}
+
+	public boolean matchListHasNext() {
+		if (matchSize > matchIndex) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void makeMatchingList() {
+		indexReset();
 		while (hasNext()) {
 			if (pokemons.get(index).isPlayer() == true) {// ポケモンのidがtrue(味方)なら
 				myPokemon.add(next());
@@ -53,7 +70,7 @@ public class PokemonTable {
 		for (myIndex = 0; myIndex < myPokemon.size(); myIndex++) {
 			adpoke[0] = myPokemon.get(myIndex);
 			for (eneIndex = 0; eneIndex < enemyPokemon.size(); eneIndex++) {
-				adpoke[1] = enemyPokemon.get(index);
+				adpoke[1] = enemyPokemon.get(eneIndex);
 				kumiawase.add(adpoke.clone());
 			}
 		}
@@ -65,7 +82,6 @@ public class PokemonTable {
 				kumiawase.add(adpoke.clone());
 			}
 		}
-		return kumiawase;
 	}
 
 }
