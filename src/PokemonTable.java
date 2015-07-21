@@ -5,7 +5,7 @@ import com.sun.org.glassfish.external.statistics.annotations.Reset;
 
 public class PokemonTable {
 	private List<Pokemon> pokemons = new ArrayList<Pokemon>();
-	private int index, myIndex = 0, eneIndex = 0;
+	private int index;
 	private int size;
 
 	private List<Pokemon> enemyPokemon = new ArrayList<Pokemon>();
@@ -44,20 +44,27 @@ public class PokemonTable {
 		return pokemons.get(index++);
 	}
 
+	public void matchIndexReset() {
+		matchIndex = 0;
+	}
+
 	public Pokemon[] matchingListNext() {
 
 		return kumiawase.get(matchIndex++);
 	}
 
 	public boolean matchListHasNext() {
-		if (matchSize > matchIndex) {
+		if (kumiawase.size() > matchIndex) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void makeMatchingList() {
+	public List<Pokemon[]> makeMatchingList() {
+
+		int myIndex = 0;
+		int eneIndex = 0;
 		indexReset();
 		while (hasNext()) {
 			if (pokemons.get(index).isPlayer() == true) {// ポケモンのidがtrue(味方)なら
@@ -75,13 +82,33 @@ public class PokemonTable {
 			}
 		}
 
+		eneIndex = 0;
+		myIndex = 0;
+
 		for (eneIndex = 0; eneIndex < enemyPokemon.size(); eneIndex++) {
-			adpoke[1] = enemyPokemon.get(index);
+			adpoke[1] = enemyPokemon.get(eneIndex);
 			for (myIndex = 0; myIndex < myPokemon.size(); myIndex++) {
 				adpoke[0] = myPokemon.get(myIndex);
 				kumiawase.add(adpoke.clone());
 			}
 		}
+
+		return kumiawase;
 	}
 
+	public EffectTable mCe() {
+		matchIndexReset();
+		EffectRelation kouka;
+		EffectTable effecttable = new EffectTable();
+		TypeChecker tc = new TypeChecker();
+		matchIndexReset();
+		while (matchListHasNext()) {
+			// 組み合わせの効果をeffecttableリストへ追加していく
+			kouka = tc.typecheck(kumiawase.get(matchIndex)[0],
+					kumiawase.get(matchIndex)[1]);
+			matchIndex++;
+			effecttable.add(kouka);
+		}
+		return effecttable;
+	}
 }
