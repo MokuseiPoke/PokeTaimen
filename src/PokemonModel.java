@@ -35,8 +35,6 @@ public class PokemonModel {
               int i=0;
               Hashtable<String,String> aPoke = new Hashtable<String,String>();
               while (st.hasMoreTokens()) {
-                // 1行の各要素をタブ区切りで表示
-                //System.out.print(st.nextToken() + "\t");
             	  aPoke.put(label[i++], st.nextToken());
               }
               pokeHash.put(aPoke.get("name"), aPoke);
@@ -54,14 +52,19 @@ public class PokemonModel {
 
 	public Pokemon searchName(Pokemon pokemon){
 		
-		Hashtable<String,String> aPoke = pokeHash.get(pokemon.getName()); //aPokeに目的のポケモンを格納
+		Hashtable<String,String> aPoke;
+		if(pokeHash.containsKey(pokemon.getName())){
+			aPoke = pokeHash.get(pokemon.getName()); //aPokeに目的のポケモンを格納
+		}else{
+			aPoke = pokeHash.get("みがわり");
+		}
 		Pokemon.Type type1,type2;
 		//タイプをデーターベースのひらがな表記からenum型へ
 		String sType1 = aPoke.get("type1");
 		
 		type1=Pokemon.Type.NONE;
 		type2=Pokemon.Type.NONE;
-
+		
 		if(sType1.equals("ノーマル")) type1=Pokemon.Type.NORMAL;
 		if(sType1.equals("ほのお")) type1=Pokemon.Type.FIRE;
 		if(sType1.equals("みず")) type1=Pokemon.Type.WATER;
@@ -80,6 +83,7 @@ public class PokemonModel {
 		if(sType1.equals("あく")) type1=Pokemon.Type.DARK;
 		if(sType1.equals("はがね")) type1=Pokemon.Type.STEEL;
 		if(sType1.equals("フェアリー")) type1=Pokemon.Type.FAIRY;
+		if(sType1.equals("なし")) type1=Pokemon.Type.NONE;
 		
 		
 		if(aPoke.containsKey("type2")){
