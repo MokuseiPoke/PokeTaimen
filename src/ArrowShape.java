@@ -3,19 +3,35 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Panel;
-
+import java.awt.geom.GeneralPath;
+import java.awt.Point;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
 
-public class ArrowShape extends JPanel{
-		public void paintComponent(Graphics g){
-			super.paintComponents(g);
-			Dimension wh = this.getSize();
-			//g.drawLine(0, 0, wh.width, wh.height);
-			for(int i=0;i<6;i++){
-				g.drawLine(5,34+47*i,5,34+47*i);
+public class ArrowShape extends JComponent{
+	private TestArrow as0;
+	Point[] point = new Point[12];
+	public ArrowShape(){
+		super();
+		{
+			//各ポケモンの座標を生成
+			for(int i=0;i<12;i++){
+				if(i<6){
+					point[i] = new Point(10,30+i*50);
+				}else{
+					point[i] = new Point(270,30+(i-6)*50);
+				}
 			}
 			
+			as0= new TestArrow(point[0], point[9]);
 		}
+		
 	}
+	
+	protected void paintComponent(Graphics g){
+		Graphics2D g2= (Graphics2D)g;
+		g2.setColor(Color.BLUE);
+		g2.draw(as0);
+	}
+}
