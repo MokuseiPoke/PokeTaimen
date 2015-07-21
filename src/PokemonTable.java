@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.glassfish.external.statistics.annotations.Reset;
-
 public class PokemonTable {
 	private List<Pokemon> pokemons = new ArrayList<Pokemon>();
 	private int index;
@@ -13,11 +11,7 @@ public class PokemonTable {
 	private List<Pokemon[]> kumiawase = new ArrayList<Pokemon[]>();
 	Pokemon[] adpoke = new Pokemon[2];// [0]に攻めポケ[1]に防御ポケ
 
-	private int ePokeSize = 0;
-	private int mPokeSize = 0;
 	private int matchIndex = 0;
-	private int matchSize = 0;
-
 	public PokemonTable() {
 		size = 0;
 		index = 0;
@@ -86,9 +80,9 @@ public class PokemonTable {
 		myIndex = 0;
 
 		for (eneIndex = 0; eneIndex < enemyPokemon.size(); eneIndex++) {
-			adpoke[1] = enemyPokemon.get(eneIndex);
+			adpoke[0] = enemyPokemon.get(eneIndex);
 			for (myIndex = 0; myIndex < myPokemon.size(); myIndex++) {
-				adpoke[0] = myPokemon.get(myIndex);
+				adpoke[1] = myPokemon.get(myIndex);
 				kumiawase.add(adpoke.clone());
 			}
 		}
