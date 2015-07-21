@@ -35,7 +35,8 @@ public class TypeChecker {
 					case FIRE:
 						if (enetype[j] == Pokemon.Type.GRASS
 								|| enetype[j] == Pokemon.Type.ICE
-								|| enetype[j] == Pokemon.Type.BUG) {
+								|| enetype[j] == Pokemon.Type.BUG
+								|| enetype[j] == Pokemon.Type.STEEL) {
 							kouka[i] *= 2;
 						}// 抜群
 						if (enetype[j] == Pokemon.Type.FIRE
