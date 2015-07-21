@@ -21,6 +21,13 @@ public class EffectRelation {
 	}
 	
     
+	@Override
+	public String toString() {
+		return "EffectRelation [effect=" + effect + ", attackPokemon="
+				+ attackPokemon + ", defensePokemon=" + defensePokemon + "]";
+	}
+
+
 	public Effect getEffect() {
 		return effect;
 	}
