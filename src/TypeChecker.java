@@ -17,7 +17,7 @@ public class TypeChecker {
 		enetype = p2.getType();// enetypeにp2のタイプを入れる
 		mytype = p1.getType();// mytypeにp1のタイプを入れる
 
-		if (mytype[0] != Pokemon.Type.NONE && mytype[1] != Pokemon.Type.NONE) {
+		if (mytype[0] != Pokemon.Type.NONE) {
 			for (i = 0; i <= 1; i++) {// 敵のj番目のタイプ(0か1)
 				for (j = 0; j <= 1; j++) {
 
