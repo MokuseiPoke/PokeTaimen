@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class ArrowShape extends JComponent{
 	private TestArrow as0;
 	Point[] point = new Point[12];
+	Color color = Color.BLUE;
 	public ArrowShape(){
 		super();
 		{
@@ -29,10 +30,15 @@ public class ArrowShape extends JComponent{
 		}
 		
 	}
+	public ArrowShape(int botId,int headId,Color color){
+		this();
+		this.color=color;
+		as0 = new TestArrow(point[botId],point[headId]);
+	}
 	
 	protected void paintComponent(Graphics g){
 		Graphics2D g2= (Graphics2D)g;
-		g2.setColor(Color.BLUE);
+		g2.setColor(color);
 		g2.draw(as0);
 	}
 }
