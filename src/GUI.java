@@ -103,6 +103,7 @@ public class GUI extends JFrame implements ActionListener {
 		drawpanel.setBounds(200, 70, 280, 300);
 		contentPane.add(drawpanel);
 		drawpanel.setLayout(null);
+		
 		line = new ArrowShape();
 		line.setBounds(0, 0, 280, 300);
 		drawpanel.add(line);

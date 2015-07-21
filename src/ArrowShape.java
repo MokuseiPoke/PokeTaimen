@@ -24,7 +24,8 @@ public class ArrowShape extends JComponent{
 				}
 			}
 			
-			as0= new TestArrow(point[0], point[9]);
+			as0= new TestArrow(point[0], point[6]);
+			
 		}
 		
 	}
