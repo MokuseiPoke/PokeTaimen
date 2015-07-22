@@ -11,7 +11,8 @@ import javax.swing.JPanel;
 
 public class ArrowShape extends JComponent{
 	private TestArrow as0;
-	Point[] point = new Point[12];
+	Point[] point1 = new Point[12];
+	Point[] point2 = new Point[12];
 	Color color = Color.BLUE;
 	public ArrowShape(){
 		super();
@@ -19,21 +20,27 @@ public class ArrowShape extends JComponent{
 			//各ポケモンの座標を生成
 			for(int i=0;i<12;i++){
 				if(i<6){
-					point[i] = new Point(10,30+i*50);
+					point1[i] = new Point(10,25+i*47);
+					point2[i] = new Point(10,40+i*47);
 				}else{
-					point[i] = new Point(270,30+(i-6)*50);
+					point1[i] = new Point(270,25+(i-6)*47);
+					point2[i] = new Point(270,40+(i-6)*47);
 				}
 			}
-			
-			as0= new TestArrow(point[0], point[6]);
 			
 		}
 		
 	}
-	public ArrowShape(int botId,int headId,Color color){
+	public ArrowShape(int bottomId,int headId,Color color){
 		this();
 		this.color=color;
-		as0 = new TestArrow(point[botId],point[headId]);
+		if(bottomId<headId){	//矢印の向きを確認
+			as0 = new TestArrow(point1[bottomId],point1[headId]);
+			//ystem.out.println("左から右");
+		}else{
+			as0 = new TestArrow(point2[bottomId],point2[headId]);
+			//System.out.println("右から左");
+		}
 	}
 	
 	protected void paintComponent(Graphics g){
