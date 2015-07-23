@@ -14,6 +14,9 @@ public class ArrowShape extends JComponent{
 	Point[] point1 = new Point[12];
 	Point[] point2 = new Point[12];
 	Color color = Color.BLUE;
+	// ここから追記
+	private int bottomId, headId;
+	// ここまで追記
 	public ArrowShape(){
 		super();
 		{
@@ -33,6 +36,10 @@ public class ArrowShape extends JComponent{
 	}
 	public ArrowShape(int bottomId,int headId,Color color){
 		this();
+		// ここから追記
+		this.bottomId = bottomId;
+		this.headId = headId;
+		// ここまで追記
 		this.color=color;
 		if(bottomId<headId){	//矢印の向きを確認
 			as0 = new TestArrow(point1[bottomId],point1[headId]);
@@ -48,4 +55,12 @@ public class ArrowShape extends JComponent{
 		g2.setColor(color);
 		g2.draw(as0);
 	}
+	
+	public int getBttomId(){
+		return this.bottomId;
+	}
+	public int getHeadId(){
+		return this.headId;
+	}
+
 }
