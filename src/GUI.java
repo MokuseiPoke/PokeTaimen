@@ -207,7 +207,7 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 					typelabel2[tempPoke.getId()].setIcon(new ImageIcon(
 							getClass().getResource("icon/" + tempType[1] + ".png")));
 				}
-				System.out.println(tempType[0] + "," + tempType[1]);
+				//System.out.println(tempType[0] + "," + tempType[1]);
 			}
 			ptable.indexReset();
 
@@ -244,7 +244,7 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 				case "NORMAL":
 					break;
 				}
-				System.out.println(ef);
+				//System.out.println(ef);
 
 			}
 			
