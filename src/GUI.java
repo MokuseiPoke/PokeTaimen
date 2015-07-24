@@ -46,7 +46,7 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 	
 	
 	public GUI() {
-		setTitle("PBM(PokemonBestMatch)");
+		setTitle("PTS(PokemonTaimenSensyutu)");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				(getClass().getResource("icon/モンスターボール.png"))));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,8 +73,9 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 
 			checkbtn[i] = new JToggleButton("");
 			checkbtn[i].addItemListener(this);
-//			checkbtn[i].setActionCommand(String.valueOf(i));//★
-			checkbtn[i].setBounds(7, 20 + 47 * i, 30, 27);
+			checkbtn[i].setBounds(7, 20 + 47 * i, 40, 27);
+			checkbtn[i].setContentAreaFilled(false);
+			checkbtn[i].setBorderPainted(false);
 			mypanel.add(checkbtn[i]);			
 
 			typelabel1[i] = new JLabel("");
@@ -101,7 +102,9 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 
 			checkbtn[i] = new JToggleButton("");
 			checkbtn[i].addItemListener(this);
-			checkbtn[i].setBounds(170, 20 + 47 * (i-6), 30, 27);
+			checkbtn[i].setBounds(160, 20 + 47 * (i-6), 40, 27);
+			checkbtn[i].setContentAreaFilled(false);
+			checkbtn[i].setBorderPainted(false);
 			enepanel.add(checkbtn[i]);			
 
 			typelabel1[i] = new JLabel("");
@@ -146,6 +149,10 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 		String cmd = e.getActionCommand();
 		drawpanel.removeAll();
 		repaint();
+		for(int i=0;i<12;i++){
+			checkbtn[i].setSelected(false);
+		}
+		
 		// クリアボタンの処理
 		if (cmd.equals("myclear")) {
 			for (int i = 0; i < 6; i++) {
@@ -273,6 +280,8 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 						if(arrow.getBttomId()==i||arrow.getHeadId()==i){
 //							System.out.println(arrow.getBttomId()+"を消去します");
 							arrow.setVisible(false);
+							text[i].setEnabled(false);
+							text[i].setDisabledTextColor(Color.WHITE);
 						}	
 					}
 				}else{
@@ -282,6 +291,7 @@ public class GUI extends JFrame implements ActionListener, ItemListener{
 						if(arrow.getBttomId()==i||arrow.getHeadId()==i){
 //							System.out.println(arrow.getBttomId()+"をだします");
 							arrow.setVisible(true);
+							text[i].setEnabled(true);
 						}	
 					}
 	
